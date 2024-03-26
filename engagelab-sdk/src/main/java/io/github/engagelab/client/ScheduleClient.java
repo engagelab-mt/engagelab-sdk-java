@@ -8,7 +8,7 @@ import io.github.engagelab.bean.schedule.*;
 import java.util.List;
 
 /**
- * (<a href="https://www.engagelab.com/docs/app-push/rest-api/statistics-api">REST API - Status</a>)
+ * (<a href="https://www.engagelab.com/docs/app-push/rest-api/scheduled-tasks-api">REST API - Schedule</a>)
  */
 public interface ScheduleClient {
 
