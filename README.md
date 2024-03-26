@@ -86,7 +86,7 @@ public ScheduleApi scheduleApi() {
 
 api-example
 
-* [PushApi](https://github.com/jpush/jiguang-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/PushApiTest.java)
-* [DeviceApi](https://github.com/jpush/jiguang-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/api/DeviceApiTest.java)
-* [StatusApi](https://github.com/jpush/jiguang-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/api/StatusApiTest.java)
-* [ScheduleApi](https://github.com/jpush/jiguang-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/api/ScheduleApiTest.java)
+* [PushApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/PushApiTest.java)
+* [DeviceApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/DeviceApiTest.java)
+* [StatusApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/StatusApiTest.java)
+* [ScheduleApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/ScheduleApiTest.java)
