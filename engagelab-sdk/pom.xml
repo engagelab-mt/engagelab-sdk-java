@@ -64,7 +64,7 @@
 
     <name>EngageLab SDK For Rest Api</name>
     <description>EngageLab SDK For Rest Api</description>
-    <url>https://github.com/engagelab-mt/engagelab-java-sdk</url>
+    <url>https://github.com/engagelab-mt/engagelab-sdk-java</url>
 
     <licenses>
         <license>
@@ -83,9 +83,9 @@
     </developers>
 
     <scm>
-        <url>https://github.com/engagelab-mt/engagelab-java-sdk</url>
-        <connection>scm:git:git@github.com:engagelab-mt/engagelab-java-sdk.git</connection>
-        <developerConnection>scm:git:git@github.com:engagelab-mt/engagelab-java-sdk.git</developerConnection>
+        <url>https://github.com/engagelab-mt/engagelab-sdk-java</url>
+        <connection>scm:git:git@github.com:engagelab-mt/engagelab-sdk-java.git</connection>
+        <developerConnection>scm:git:git@github.com:engagelab-mt/engagelab-sdk-java.git</developerConnection>
     </scm>
 
     <build>
