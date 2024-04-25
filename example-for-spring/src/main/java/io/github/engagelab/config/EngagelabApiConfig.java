@@ -1,5 +1,6 @@
 package io.github.engagelab.config;
 
+import feign.Logger;
 import io.github.engagelab.api.DeviceApi;
 import io.github.engagelab.api.PushApi;
 import io.github.engagelab.api.ScheduleApi;
@@ -22,6 +23,7 @@ public class EngagelabApiConfig {
         return new PushApi.Builder()
                 .setAppKey(appKey)
                 .setMasterSecret(masterSecret)
+                .setLoggerLevel(Logger.Level.FULL)
                 .build();
     }
 
@@ -30,6 +32,7 @@ public class EngagelabApiConfig {
         return new DeviceApi.Builder()
                 .setAppKey(appKey)
                 .setMasterSecret(masterSecret)
+                .setLoggerLevel(Logger.Level.FULL)
                 .build();
     }
 
@@ -38,6 +41,7 @@ public class EngagelabApiConfig {
         return new StatusApi.Builder()
                 .setAppKey(appKey)
                 .setMasterSecret(masterSecret)
+                .setLoggerLevel(Logger.Level.FULL)
                 .build();
     }
 
@@ -46,6 +50,7 @@ public class EngagelabApiConfig {
         return new ScheduleApi.Builder()
                 .setAppKey(appKey)
                 .setMasterSecret(masterSecret)
+                .setLoggerLevel(Logger.Level.FULL)
                 .build();
     }
 

@@ -79,7 +79,7 @@ public class NotificationMessage {
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private String largeIcon;
 
-        @JsonProperty("small_icon_uri")
+        @JsonProperty("small_icon")
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private String smallIcon;
 
