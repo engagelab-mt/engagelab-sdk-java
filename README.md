@@ -9,6 +9,7 @@ REST API DOC:
 * [REST API - Device](https://www.engagelab.com/docs/app-push/rest-api/Tag-Alias-API)
 * [REST API - Status](https://www.engagelab.com/docs/app-push/rest-api/statistics-api)
 * [REST API - Schedule](https://www.engagelab.com/docs/app-push/rest-api/scheduled-tasks-api)
+* [REST API - GroupPush](https://www.engagelab.com/zh_CN/docs/app-push/rest-api/group-push-api)
 
 support JDK 1.8.
 
@@ -109,3 +110,4 @@ api-example
 * [DeviceApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/DeviceApiTest.java)
 * [StatusApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/StatusApiTest.java)
 * [ScheduleApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/ScheduleApiTest.java)
+* [GroupPushApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/GroupPushApiTest.java)
