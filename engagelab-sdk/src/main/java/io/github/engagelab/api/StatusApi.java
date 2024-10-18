@@ -1,5 +1,6 @@
 package io.github.engagelab.api;
 
+import feign.Client;
 import feign.Feign;
 import feign.Logger;
 import feign.auth.BasicAuthRequestInterceptor;
@@ -38,6 +39,7 @@ public class StatusApi {
     public static class Builder {
 
         private String host = "https://push.api.engagelab.cc";
+        private Client client = new OkHttpClient();
         private Proxy proxy;
         private String appKey;
         private String masterSecret;
@@ -48,8 +50,8 @@ public class StatusApi {
             return this;
         }
 
-        public Builder setProxy(@NonNull Proxy proxy) {
-            this.proxy = proxy;
+        public Builder setClient(@NonNull Client client) {
+            this.client = client;
             return this;
         }
 
@@ -69,12 +71,8 @@ public class StatusApi {
         }
 
         public StatusApi build() {
-            okhttp3.OkHttpClient.Builder delegateBuilder = new okhttp3.OkHttpClient().newBuilder();
-            if (proxy != null) {
-                delegateBuilder.proxy(proxy);
-            }
             StatusClient statusClient = Feign.builder()
-                    .client(new OkHttpClient(delegateBuilder.build()))
+                    .client(client)
                     .requestInterceptor(new BasicAuthRequestInterceptor(appKey, masterSecret))
                     .encoder(new JacksonEncoder())
                     .decoder(new JacksonDecoder())

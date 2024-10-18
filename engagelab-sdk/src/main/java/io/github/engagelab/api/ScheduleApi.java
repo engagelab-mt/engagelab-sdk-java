@@ -2,6 +2,7 @@ package io.github.engagelab.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import feign.Client;
 import feign.Feign;
 import feign.Logger;
 import feign.auth.BasicAuthRequestInterceptor;
@@ -14,7 +15,6 @@ import io.github.engagelab.client.ScheduleClient;
 import io.github.engagelab.codec.ApiErrorDecoder;
 import lombok.NonNull;
 
-import java.net.Proxy;
 import java.util.List;
 
 public class ScheduleApi {
@@ -52,7 +52,7 @@ public class ScheduleApi {
     public static class Builder {
 
         private String host = "https://push.api.engagelab.cc";
-        private Proxy proxy;
+        private Client client = new OkHttpClient();
         private String appKey;
         private String masterSecret;
         private Logger.Level loggerLevel = Logger.Level.BASIC;
@@ -62,8 +62,8 @@ public class ScheduleApi {
             return this;
         }
 
-        public Builder setProxy(@NonNull Proxy proxy) {
-            this.proxy = proxy;
+        public Builder setClient(@NonNull Client client) {
+            this.client = client;
             return this;
         }
 
@@ -83,14 +83,10 @@ public class ScheduleApi {
         }
 
         public ScheduleApi build() {
-            okhttp3.OkHttpClient.Builder delegateBuilder = new okhttp3.OkHttpClient().newBuilder();
-            if (proxy != null) {
-                delegateBuilder.proxy(proxy);
-            }
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
             ScheduleClient scheduleClient = Feign.builder()
-                    .client(new OkHttpClient(delegateBuilder.build()))
+                    .client(client)
                     .requestInterceptor(new BasicAuthRequestInterceptor(appKey, masterSecret))
                     .encoder(new JacksonEncoder(objectMapper))
                     .decoder(new JacksonDecoder(objectMapper))
