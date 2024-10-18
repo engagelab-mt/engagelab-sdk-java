@@ -23,7 +23,7 @@ sdk
     <dependency>
         <groupId>io.github.engagelab-mt</groupId>
         <artifactId>engagelab-sdk-java</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
     </dependency>
 </dependencies>
 ```
@@ -47,7 +47,7 @@ log
 ## 2. Api
 
 create api
-> also can set host、proxy and loggerLevel if you need.
+> also can set host、client and loggerLevel if you need.
 
 ```java
 // appKey and masterSecret from EngageLab console
@@ -78,6 +78,25 @@ public StatusApi statusApi() {
 @Bean
 public ScheduleApi scheduleApi() {
     return new ScheduleApi.Builder()
+            .setAppKey(appKey)
+            .setMasterSecret(masterSecret)
+            .build();
+}
+
+
+@Bean("okHttpClient")
+public OkHttpClient okHttpClient() {
+    okhttp3.OkHttpClient okHttpClient = new okhttp3.OkHttpClient().newBuilder()
+            .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy_host", proxy_port))) // set proxy
+            .connectTimeout(5, TimeUnit.SECONDS) // set connect timeout
+            .build();
+    return new OkHttpClient(okHttpClient);
+}
+
+@Bean
+public GroupPushApi groupPushApi(@Qualifier("okHttpClient") OkHttpClient okHttpClient) {
+    return new GroupPushApi.Builder()
+            .setClient(okHttpClient)
             .setAppKey(appKey)
             .setMasterSecret(masterSecret)
             .build();

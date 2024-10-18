@@ -13,6 +13,8 @@ engagelab:
   api:
     # 此为演示数据，请替换成真实数据
     app-key: fcc545917674d6f06c141704
-    master-secret: ed2681155310c0ee0b7945cf
+    master-secret: 1386de57daab610e2f660e55
+    group-app-key: fcc545917674d6f06c141704
+    group-master-secret: 1386de57daab610e2f660e55
 
 
