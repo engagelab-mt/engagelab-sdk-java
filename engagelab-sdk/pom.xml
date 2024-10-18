@@ -96,7 +96,7 @@
                 <version>0.4.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>central</serverId>
+                    <publishingServerId>central</publishingServerId>
                     <tokenAuth>true</tokenAuth>
                     <autoPublish>true</autoPublish>
                     <waitUntil>published</waitUntil>
