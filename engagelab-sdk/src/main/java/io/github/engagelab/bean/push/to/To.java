@@ -10,7 +10,6 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class To {
-
     @JsonProperty("registration_id")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<String> registrationIdList;
@@ -29,4 +28,7 @@ public class To {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<String> aliasList;
 
+    @JsonProperty("live_activity_id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String liveActivityId;
 }
