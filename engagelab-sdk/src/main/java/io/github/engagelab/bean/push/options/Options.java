@@ -39,4 +39,15 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map<String, Object> thirdPartyChannel;
 
+    @JsonProperty("classification")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Integer classification;
+
+    @JsonProperty("voice_value")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String voiceValue;
+
+    @JsonProperty("enhanc_message")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Boolean enhanc_message;
 }
