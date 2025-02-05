@@ -37,4 +37,10 @@ public interface ScheduleClient {
     @Headers("Content-Type: application/json; charset=utf-8")
     SchedulePushDetailGetResult getSchedulePushDetail(@Param("schedule_id") String scheduleId);
 
+
+    // ********************* 如果遇到此api没有及时补充字段的情况，可以自行构建json，调用下面的接口 *********************
+
+    @RequestLine("POST /v4/schedules")
+    @Headers("Content-Type: application/json; charset=utf-8")
+    SchedulePushResult schedulePush(Object param);
 }

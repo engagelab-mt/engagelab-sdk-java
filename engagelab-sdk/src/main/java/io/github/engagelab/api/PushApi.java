@@ -26,6 +26,12 @@ public class PushApi {
         return pushClient.push(param);
     }
 
+    // ********************* 如果遇到此api没有及时补充字段的情况，可以自行构建json，调用下面的接口 *********************
+
+    public PushResult push(Object param) {
+        return pushClient.push(param);
+    }
+
     public static class Builder {
 
         private String host = "https://push.api.engagelab.cc";
