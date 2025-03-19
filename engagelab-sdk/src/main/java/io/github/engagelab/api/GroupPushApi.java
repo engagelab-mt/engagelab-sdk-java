@@ -28,8 +28,8 @@ public class GroupPushApi {
 
     public static class Builder {
 
+        private String host;
         private Client client = new OkHttpClient();
-        private String host = "https://push.api.engagelab.cc";
         private String groupAppKey;
         private String groupMasterSecret;
         private Logger.Level loggerLevel = Logger.Level.BASIC;

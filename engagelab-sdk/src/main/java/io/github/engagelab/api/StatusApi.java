@@ -13,7 +13,6 @@ import io.github.engagelab.client.StatusClient;
 import io.github.engagelab.codec.ApiErrorDecoder;
 import lombok.NonNull;
 
-import java.net.Proxy;
 import java.util.Map;
 
 public class StatusApi {
@@ -38,9 +37,8 @@ public class StatusApi {
 
     public static class Builder {
 
-        private String host = "https://push.api.engagelab.cc";
+        private String host;
         private Client client = new OkHttpClient();
-        private Proxy proxy;
         private String appKey;
         private String masterSecret;
         private Logger.Level loggerLevel = Logger.Level.BASIC;

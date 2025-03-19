@@ -57,7 +57,7 @@ public class ScheduleApi {
 
     public static class Builder {
 
-        private String host = "https://push.api.engagelab.cc";
+        private String host;
         private Client client = new OkHttpClient();
         private String appKey;
         private String masterSecret;

@@ -24,7 +24,7 @@ sdk
     <dependency>
         <groupId>io.github.engagelab-mt</groupId>
         <artifactId>engagelab-sdk-java</artifactId>
-        <version>0.0.10</version>
+        <version>0.0.11</version>
     </dependency>
 </dependencies>
 ```
@@ -55,6 +55,7 @@ create api
 @Bean
 public PushApi pushApi() {
     return new PushApi.Builder()
+            .setHost(DataCenterHost.HK.getUrl())
             .setAppKey(appKey)
             .setMasterSecret(masterSecret)
             .build();
@@ -63,6 +64,7 @@ public PushApi pushApi() {
 @Bean
 public DeviceApi deviceApi() {
     return new DeviceApi.Builder()
+            .setHost(DataCenterHost.HK.getUrl())
             .setAppKey(appKey)
             .setMasterSecret(masterSecret)
             .build();
@@ -71,6 +73,7 @@ public DeviceApi deviceApi() {
 @Bean
 public StatusApi statusApi() {
     return new StatusApi.Builder()
+            .setHost(DataCenterHost.HK.getUrl())
             .setAppKey(appKey)
             .setMasterSecret(masterSecret)
             .build();
@@ -79,6 +82,7 @@ public StatusApi statusApi() {
 @Bean
 public ScheduleApi scheduleApi() {
     return new ScheduleApi.Builder()
+            .setHost(DataCenterHost.HK.getUrl())
             .setAppKey(appKey)
             .setMasterSecret(masterSecret)
             .build();
@@ -97,6 +101,7 @@ public OkHttpClient okHttpClient() {
 @Bean
 public GroupPushApi groupPushApi(@Qualifier("okHttpClient") OkHttpClient okHttpClient) {
     return new GroupPushApi.Builder()
+            .setHost(DataCenterHost.HK.getUrl())
             .setClient(okHttpClient)
             .setAppKey(appKey)
             .setMasterSecret(masterSecret)

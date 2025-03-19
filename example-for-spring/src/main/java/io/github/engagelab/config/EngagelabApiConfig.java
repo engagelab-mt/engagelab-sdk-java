@@ -3,6 +3,7 @@ package io.github.engagelab.config;
 import feign.Logger;
 import feign.okhttp.OkHttpClient;
 import io.github.engagelab.api.*;
+import io.github.engagelab.enums.DataCenterHost;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +29,7 @@ public class EngagelabApiConfig {
     @Bean
     public PushApi pushApi() {
         return new PushApi.Builder()
+                .setHost(DataCenterHost.SG.getUrl())
                 .setAppKey(appKey)
                 .setMasterSecret(masterSecret)
                 .setLoggerLevel(Logger.Level.FULL)
@@ -37,6 +39,7 @@ public class EngagelabApiConfig {
     @Bean
     public DeviceApi deviceApi() {
         return new DeviceApi.Builder()
+                .setHost(DataCenterHost.HK.getUrl())
                 .setAppKey(appKey)
                 .setMasterSecret(masterSecret)
                 .setLoggerLevel(Logger.Level.FULL)
@@ -46,6 +49,7 @@ public class EngagelabApiConfig {
     @Bean
     public StatusApi statusApi() {
         return new StatusApi.Builder()
+                .setHost(DataCenterHost.SG.getUrl())
                 .setAppKey(appKey)
                 .setMasterSecret(masterSecret)
                 .setLoggerLevel(Logger.Level.FULL)
@@ -55,6 +59,7 @@ public class EngagelabApiConfig {
     @Bean
     public ScheduleApi scheduleApi() {
         return new ScheduleApi.Builder()
+                .setHost(DataCenterHost.SG.getUrl())
                 .setAppKey(appKey)
                 .setMasterSecret(masterSecret)
                 .setLoggerLevel(Logger.Level.FULL)
@@ -75,6 +80,7 @@ public class EngagelabApiConfig {
     @Bean
     public GroupPushApi groupPushApi(@Qualifier("okHttpClient") OkHttpClient okHttpClient) {
         return new GroupPushApi.Builder()
+                .setHost(DataCenterHost.SG.getUrl())
                 .setClient(okHttpClient)
                 .setAppKey(groupAppKey)
                 .setMasterSecret(groupMasterSecret)
