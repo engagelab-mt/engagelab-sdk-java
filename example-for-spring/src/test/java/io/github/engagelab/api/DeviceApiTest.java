@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 @SpringBootTest
@@ -21,7 +22,9 @@ public class DeviceApiTest {
 
     @Test
     public void getDeviceStatus() {
-        DeviceStatusGetResult deviceStatus = deviceApi.getDeviceStatus();
+        DeviceStatusGetParam param = new DeviceStatusGetParam();
+        param.setRegistrationIds(Arrays.asList("170976fa8a92af7c976"));
+        List<DeviceStatusGetResult> deviceStatus = deviceApi.getDeviceStatus(param);
         log.info("deviceStatus:{}", deviceStatus);
     }
 

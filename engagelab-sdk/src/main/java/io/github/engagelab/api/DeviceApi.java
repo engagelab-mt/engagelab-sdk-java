@@ -1,5 +1,7 @@
 package io.github.engagelab.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import feign.Client;
 import feign.Feign;
 import feign.Logger;
@@ -24,8 +26,8 @@ public class DeviceApi {
         this.deviceClient = deviceClient;
     }
 
-    public DeviceStatusGetResult getDeviceStatus() {
-        return deviceClient.getDeviceStatus();
+    public List<DeviceStatusGetResult> getDeviceStatus(DeviceStatusGetParam param) {
+        return deviceClient.getDeviceStatus(param);
     }
 
     public DeviceGetResult getDevice(String registrationId) {
@@ -102,11 +104,13 @@ public class DeviceApi {
         }
 
         public DeviceApi build() {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
             DeviceClient deviceClient = Feign.builder()
                     .client(client)
                     .requestInterceptor(new BasicAuthRequestInterceptor(appKey, masterSecret))
-                    .encoder(new JacksonEncoder())
-                    .decoder(new JacksonDecoder())
+                    .encoder(new JacksonEncoder(objectMapper))
+                    .decoder(new JacksonDecoder(objectMapper))
                     .errorDecoder(new ApiErrorDecoder())
                     .logger(new Slf4jLogger())
                     .logLevel(loggerLevel)

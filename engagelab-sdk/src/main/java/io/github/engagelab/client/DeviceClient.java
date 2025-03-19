@@ -15,7 +15,7 @@ public interface DeviceClient {
 
     @RequestLine("POST /v4/devices/status")
     @Headers("Content-Type: application/json; charset=utf-8")
-    DeviceStatusGetResult getDeviceStatus();
+    List<DeviceStatusGetResult> getDeviceStatus(DeviceStatusGetParam param);
 
     @RequestLine("GET /v4/devices/{registration_id}")
     @Headers("Content-Type: application/json; charset=utf-8")
