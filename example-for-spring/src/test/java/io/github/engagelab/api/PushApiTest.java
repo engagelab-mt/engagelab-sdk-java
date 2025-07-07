@@ -1,7 +1,10 @@
 package io.github.engagelab.api;
 
+import io.github.engagelab.bean.push.BatchPushParam;
+import io.github.engagelab.bean.push.BatchPushResult;
 import io.github.engagelab.bean.push.PushParam;
 import io.github.engagelab.bean.push.PushResult;
+import io.github.engagelab.bean.push.message.custom.CustomMessage;
 import io.github.engagelab.bean.push.message.liveactivity.LiveActivityMessage;
 import io.github.engagelab.bean.push.message.notification.NotificationMessage;
 import io.github.engagelab.bean.push.to.To;
@@ -91,4 +94,39 @@ public class PushApiTest {
         log.info("result:{}", result);
     }
 
+    @Test
+    public void batchPushByRegIdTest() {
+        BatchPushParam.BatchPushRequest request = new BatchPushParam.BatchPushRequest();
+        request.setTarget("1a0018970ab68766688");
+        request.setPlatform(Platform.android);
+
+        NotificationMessage notificationMessage = new NotificationMessage();
+        notificationMessage.setAlert("批量推送测试-regId");
+
+        request.setNotification(notificationMessage);
+
+        BatchPushParam batchPushParam = new BatchPushParam() {{
+            setRequests(Arrays.asList(request));
+        }};
+        BatchPushResult result = pushApi.batchPushByRegId(batchPushParam);
+        log.info("result:{}", result);
+    }
+
+    @Test
+    public void batchPushByAliasTest() {
+        BatchPushParam.BatchPushRequest request = new BatchPushParam.BatchPushRequest();
+        request.setTarget("test");
+        request.setPlatform(Platform.android);
+
+        NotificationMessage notificationMessage = new NotificationMessage();
+        notificationMessage.setAlert("批量推送测试-alias");
+
+        request.setNotification(notificationMessage);
+
+        BatchPushParam batchPushParam = new BatchPushParam() {{
+            setRequests(Arrays.asList(request));
+        }};
+        BatchPushResult result = pushApi.batchPushByAlias(batchPushParam);
+        log.info("result:{}", result);
+    }
 }

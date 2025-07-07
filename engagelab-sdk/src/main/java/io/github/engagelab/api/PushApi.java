@@ -8,6 +8,8 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
+import io.github.engagelab.bean.push.BatchPushParam;
+import io.github.engagelab.bean.push.BatchPushResult;
 import io.github.engagelab.bean.push.PushParam;
 import io.github.engagelab.bean.push.PushResult;
 import io.github.engagelab.client.PushClient;
@@ -26,6 +28,14 @@ public class PushApi {
         return pushClient.push(param);
     }
 
+    public BatchPushResult batchPushByRegId(@NonNull BatchPushParam param) {
+        return pushClient.batchPushByRegId(param);
+    }
+
+    public BatchPushResult batchPushByAlias(@NonNull BatchPushParam param) {
+        return pushClient.batchPushByAlias(param);
+    }
+
     // ********************* 如果遇到此api没有及时补充字段的情况，可以自行构建json，调用下面的接口 *********************
 
     public PushResult push(Object param) {
@@ -40,6 +50,7 @@ public class PushApi {
         private String masterSecret;
         private Logger.Level loggerLevel = Logger.Level.BASIC;
 
+        // 
         public Builder setHost(@NonNull String host) {
             this.host = host;
             return this;
