@@ -50,4 +50,22 @@ public class Options {
     @JsonProperty("enhanc_message")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Boolean enhanc_message;
+
+    /**
+     * 可选
+     * 推送计划标识
+     * 需先创建计划标识值,可在控制台创建或者通过API创建。
+     */
+    @JsonProperty("plan_id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String planId;
+
+    /**
+     * 可选
+     * 推送请求标识，用于防止重复推送
+     * 只允许字母、数字、下划线和减号，长度不超过64个字符。注意相同AppKey下这个字段必须保持唯一性。使用详情可参考如何避免重复推送
+     */
+    @JsonProperty("cid")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String cid;
 }
