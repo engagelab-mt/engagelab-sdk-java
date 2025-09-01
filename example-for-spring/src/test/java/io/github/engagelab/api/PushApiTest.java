@@ -7,6 +7,7 @@ import io.github.engagelab.bean.push.PushResult;
 import io.github.engagelab.bean.push.message.custom.CustomMessage;
 import io.github.engagelab.bean.push.message.liveactivity.LiveActivityMessage;
 import io.github.engagelab.bean.push.message.notification.NotificationMessage;
+import io.github.engagelab.bean.push.options.Options;
 import io.github.engagelab.bean.push.to.To;
 import io.github.engagelab.constants.ApiConstants;
 import io.github.engagelab.enums.Platform;
@@ -56,6 +57,12 @@ public class PushApiTest {
         body.setPlatform(Arrays.asList(Platform.android, Platform.ios));
         // 或者发送所有平台
         // param.setPlatform(ApiConstants.Platform.ALL);
+
+        // 自定义
+        // Options options = new Options();
+        // 推送计划
+        // options.setPlanId("push_20231001_001");
+        // body.setOptions(options);
 
         // 发送
         param.setBody(body);

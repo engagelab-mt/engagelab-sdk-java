@@ -88,4 +88,14 @@ public class EngagelabApiConfig {
                 .build();
     }
 
+    @Bean
+    public PushPlanApi pushPlanApi() {
+        return new PushPlanApi.Builder()
+                .setHost(DataCenterHost.SG.getUrl())
+                .setAppKey(appKey)
+                .setMasterSecret(masterSecret)
+                .setLoggerLevel(Logger.Level.FULL)
+                .build();
+    }
+
 }

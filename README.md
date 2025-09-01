@@ -10,6 +10,7 @@ REST API DOC:
 * [REST API - Status](https://www.engagelab.com/docs/app-push/rest-api/statistics-api)
 * [REST API - Schedule](https://www.engagelab.com/docs/app-push/rest-api/scheduled-tasks-api)
 * [REST API - GroupPush](https://www.engagelab.com/zh_CN/docs/app-push/rest-api/group-push-api)
+* [REST API - PushPlan](https://www.engagelab.com/zh_CN/docs/app-push/developer-guide/rest-api/push-plan-api)
 
 support JDK 1.8.
 
@@ -24,7 +25,7 @@ sdk
     <dependency>
         <groupId>io.github.engagelab-mt</groupId>
         <artifactId>engagelab-sdk-java</artifactId>
-        <version>0.0.14</version>
+        <version>0.0.15</version>
     </dependency>
 </dependencies>
 ```
@@ -107,6 +108,15 @@ public GroupPushApi groupPushApi(@Qualifier("okHttpClient") OkHttpClient okHttpC
             .setMasterSecret(masterSecret)
             .build();
 }
+
+@Bean
+public PushPlanApi pushPlanApi() {
+    return new PushPlanApi.Builder()
+            .setHost(DataCenterHost.HK.getUrl())
+            .setAppKey(appKey)
+            .setMasterSecret(masterSecret)
+            .build();
+}
 ```
 
 api-example
@@ -116,3 +126,4 @@ api-example
 * [StatusApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/StatusApiTest.java)
 * [ScheduleApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/ScheduleApiTest.java)
 * [GroupPushApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/GroupPushApiTest.java)
+* [PushPlanApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/PushPlanApiTest.java)
