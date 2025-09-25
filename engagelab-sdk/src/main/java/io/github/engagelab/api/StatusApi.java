@@ -28,11 +28,11 @@ public class StatusApi {
     }
 
     public Map<String, MessageStatusGetResult> getMessageStatus(MessageStatusGetParam param) {
-        return statusClient.getMessageStatus(param.getMessageIds());
+        return statusClient.getMessageStatus(String.join(",", param.getMessageIds()));
     }
 
     public Map<String, MessageLifecycleGetResult> getMessageLifecycle(MessageLifecycleGetParam param) {
-        return statusClient.getMessageLifecycle(param.getMessageId(), param.getRegistrationIds());
+        return statusClient.getMessageLifecycle(param.getMessageId(),String.join(",", param.getRegistrationIds()));
     }
 
     public static class Builder {

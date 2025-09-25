@@ -17,6 +17,7 @@ import io.github.engagelab.enums.Platform;
 import lombok.NonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DeviceApi {
 
@@ -47,11 +48,15 @@ public class DeviceApi {
     }
 
     public void deleteTag(String tag, List<Platform> platforms) {
-        deviceClient.deleteTag(tag, platforms);
+        deviceClient.deleteTag(tag, platforms.stream()
+                .map(Platform::name)
+                .collect(Collectors.joining(",")));
     }
 
     public TagsCountGetResult getTagCount(List<String> tags, List<Platform> platforms) {
-        return deviceClient.getTagCount(tags, platforms);
+        return deviceClient.getTagCount(String.join(",", tags), platforms.stream()
+                .map(Platform::name)
+                .collect(Collectors.joining(",")));
     }
 
     public TagsGetResult getTagStatus(String tag, String registrationId) {
@@ -59,15 +64,21 @@ public class DeviceApi {
     }
 
     public TagQuotaGetResult getTagQuota(List<String> tags, List<Platform> platforms) {
-        return deviceClient.getTagQuota(tags, platforms);
+        return deviceClient.getTagQuota(String.join(",", tags), platforms.stream()
+                .map(Platform::name)
+                .collect(Collectors.joining(",")));
     }
 
     public AliasStatusGetResult getAliasStatus(String alias, List<Platform> platforms) {
-        return deviceClient.getAliasStatus(alias, platforms);
+        return deviceClient.getAliasStatus(alias, platforms.stream()
+                .map(Platform::name)
+                .collect(Collectors.joining(",")));
     }
 
-    public void deleteAlas(String alias, List<Platform> platform) {
-        deviceClient.deleteAlas(alias, platform);
+    public void deleteAlas(String alias, List<Platform> platforms) {
+        deviceClient.deleteAlas(alias, platforms.stream()
+                .map(Platform::name)
+                .collect(Collectors.joining(",")));
     }
 
     public static class Builder {

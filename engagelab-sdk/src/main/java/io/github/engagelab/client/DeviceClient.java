@@ -35,11 +35,11 @@ public interface DeviceClient {
 
     @RequestLine("DELETE /v4/tags/{tag}?platform={platforms}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    void deleteTag(@Param("tag") String tag, @Param("platforms") List<Platform> platforms);
+    void deleteTag(@Param("tag") String tag, @Param("platforms") String platforms);
 
     @RequestLine("GET /v4/tags_count?tags={tags}&platform={platforms}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    TagsCountGetResult getTagCount(@Param("tags") List<String> tags, @Param("platforms") List<Platform> platforms);
+    TagsCountGetResult getTagCount(@Param("tags") String tags, @Param("platforms") String platforms);
 
     @RequestLine("GET /v4/tags/{tag}/registration_ids/{registration_id}")
     @Headers("Content-Type: application/json; charset=utf-8")
@@ -47,13 +47,13 @@ public interface DeviceClient {
 
     @RequestLine("GET /v4/tags/quota-info?tags={tags}&platform={platforms}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    TagQuotaGetResult getTagQuota(@Param("tags") List<String> tags, @Param("platforms") List<Platform> platforms);
+    TagQuotaGetResult getTagQuota(@Param("tags") String tags, @Param("platforms") String platforms);
 
     @RequestLine("GET /v4/aliases/{alias}?platform={platforms}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    AliasStatusGetResult getAliasStatus(@Param("alias") String alias, @Param("platforms") List<Platform> platforms);
+    AliasStatusGetResult getAliasStatus(@Param("alias") String alias, @Param("platforms") String platforms);
 
     @RequestLine("DELETE /v4/aliases/{alias}?platform={platforms}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    void deleteAlas(@Param("alias") String alias, @Param("platforms") List<Platform> platforms);
+    void deleteAlas(@Param("alias") String alias, @Param("platforms") String platforms);
 }

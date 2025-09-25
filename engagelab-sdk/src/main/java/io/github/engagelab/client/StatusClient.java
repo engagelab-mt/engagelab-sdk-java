@@ -22,10 +22,10 @@ public interface StatusClient {
 
     @RequestLine("GET /v4/status/detail?message_ids={message_ids}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    Map<String, MessageStatusGetResult> getMessageStatus(@Param("message_ids") List<String> messageIds);
+    Map<String, MessageStatusGetResult> getMessageStatus(@Param("message_ids") String messageIds);
 
     @RequestLine("GET /v4/status/message?message_id={message_id}&registration_ids={registration_ids}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    Map<String, MessageLifecycleGetResult> getMessageLifecycle(@Param("message_id") String messageId, @Param("registration_ids") List<String> registrationIds);
+    Map<String, MessageLifecycleGetResult> getMessageLifecycle(@Param("message_id") String messageId, @Param("registration_ids") String registrationIds);
 
 }
