@@ -99,6 +99,10 @@ public class NotificationMessage {
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private String displayForeground;
 
+        @JsonProperty("group_id")
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        private String groupId;
+
         @Data
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Intent {

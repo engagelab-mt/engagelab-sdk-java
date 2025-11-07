@@ -25,7 +25,7 @@ sdk
     <dependency>
         <groupId>io.github.engagelab-mt</groupId>
         <artifactId>engagelab-sdk-java</artifactId>
-        <version>0.0.16</version>
+        <version>0.0.17</version>
     </dependency>
 </dependencies>
 ```
