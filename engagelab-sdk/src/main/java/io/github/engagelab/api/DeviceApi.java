@@ -90,7 +90,6 @@ public class DeviceApi {
      * - 不支持批量删除
      * 
      * @param registrationId 设备在engagelab系统的唯一标识
-     * @return 删除结果
      */
     public void deleteDevice(@NonNull String registrationId) {
         deviceClient.deleteDevice(registrationId);
