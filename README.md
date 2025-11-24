@@ -11,6 +11,8 @@ REST API DOC:
 * [REST API - Schedule](https://www.engagelab.com/docs/app-push/rest-api/scheduled-tasks-api)
 * [REST API - GroupPush](https://www.engagelab.com/zh_CN/docs/app-push/rest-api/group-push-api)
 * [REST API - PushPlan](https://www.engagelab.com/zh_CN/docs/app-push/developer-guide/rest-api/push-plan-api)
+* [REST API - Message Withdraw](https://www.engagelab.com/zh_CN/docs/app-push/developer-guide/rest-api/message-recall-api)
+* [REST API - Delete User](https://www.engagelab.com/zh_CN/docs/app-push/developer-guide/rest-api/delete-user-api)
 
 support JDK 1.8.
 
@@ -25,7 +27,7 @@ sdk
     <dependency>
         <groupId>io.github.engagelab-mt</groupId>
         <artifactId>engagelab-sdk-java</artifactId>
-        <version>0.0.17</version>
+        <version>0.0.18</version>
     </dependency>
 </dependencies>
 ```

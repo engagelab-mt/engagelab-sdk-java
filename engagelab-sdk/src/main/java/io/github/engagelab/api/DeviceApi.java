@@ -81,6 +81,21 @@ public class DeviceApi {
                 .collect(Collectors.joining(",")));
     }
 
+    /**
+     * 删除用户
+     * 注意：
+     * - 删除操作是异步执行的
+     * - 将删除用户的所有相关数据，包括绑定的标签、别名、设备信息和时区信息
+     * - 一旦删除用户，就无法将其恢复
+     * - 不支持批量删除
+     * 
+     * @param registrationId 设备在engagelab系统的唯一标识
+     * @return 删除结果
+     */
+    public void deleteDevice(@NonNull String registrationId) {
+        deviceClient.deleteDevice(registrationId);
+    }
+
     public static class Builder {
 
         private String host;

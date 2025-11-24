@@ -97,4 +97,18 @@ public class DeviceApiTest {
         log.info("deleteAlas success");
     }
 
+    @Test
+    public void deleteDevice() {
+        // 删除用户示例
+        // 注意：
+        // 1. 删除操作是异步执行的
+        // 2. 将删除用户的所有相关数据，包括绑定的标签、别名、设备信息和时区信息
+        // 3. 一旦删除用户，就无法将其恢复
+        // 4. 不支持批量删除
+        // 5. 请务必确认registration_id正确，删除前建议先查询标签和别名信息
+        String registrationId = "18071adc031ee85262b"; // 替换为实际的registration_id
+        
+        deviceApi.deleteDevice(registrationId);
+        log.info("deleteDevice result - success");
+    }
 }

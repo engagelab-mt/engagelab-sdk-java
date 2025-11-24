@@ -1,10 +1,12 @@
 package io.github.engagelab.client;
 
 import feign.Headers;
+import feign.Param;
 import feign.RequestLine;
 import io.github.engagelab.bean.push.BatchPushParam;
 import io.github.engagelab.bean.push.BatchPushResult;
 import io.github.engagelab.bean.push.PushParam;
+import io.github.engagelab.bean.push.PushWithdrawResult;
 import io.github.engagelab.bean.push.PushResult;
 
 /**
@@ -23,6 +25,10 @@ public interface PushClient {
     @RequestLine("POST /v4/batch/push/alias")
     @Headers("Content-Type: application/json; charset=utf-8")
     BatchPushResult batchPushByAlias(BatchPushParam param);
+
+    @RequestLine("DELETE /v4/push/withdraw/{msgId}")
+    @Headers("Content-Type: application/json; charset=utf-8")
+    PushWithdrawResult withdrawPush(@Param("msgId") String msgId);
 
     // ********************* 如果遇到此api没有及时补充字段的情况，可以自行构建json，调用下面的接口 *********************
 

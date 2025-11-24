@@ -3,6 +3,7 @@ package io.github.engagelab.api;
 import io.github.engagelab.bean.push.BatchPushParam;
 import io.github.engagelab.bean.push.BatchPushResult;
 import io.github.engagelab.bean.push.PushParam;
+import io.github.engagelab.bean.push.PushWithdrawResult;
 import io.github.engagelab.bean.push.PushResult;
 import io.github.engagelab.bean.push.message.custom.CustomMessage;
 import io.github.engagelab.bean.push.message.liveactivity.LiveActivityMessage;
@@ -135,5 +136,18 @@ public class PushApiTest {
         }};
         BatchPushResult result = pushApi.batchPushByAlias(batchPushParam);
         log.info("result:{}", result);
+    }
+
+    @Test
+    public void withdrawPushTest() {
+        // 消息撤回示例
+        // 注意：
+        // 1. 只支持撤回一天内的消息
+        // 2. 不支持重复撤回
+        // 3. msgId 是推送时返回的消息ID
+        String msgId = "7034983649"; // 替换为实际的消息ID
+        
+        PushWithdrawResult result = pushApi.withdrawPush(msgId);
+        log.info("withdraw result - requestId:{}, msgId:{}", result.getRequestId(), result.getMsgId());
     }
 }

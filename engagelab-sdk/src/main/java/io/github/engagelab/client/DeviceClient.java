@@ -4,7 +4,6 @@ import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 import io.github.engagelab.bean.device.*;
-import io.github.engagelab.enums.Platform;
 
 import java.util.List;
 
@@ -56,4 +55,8 @@ public interface DeviceClient {
     @RequestLine("DELETE /v4/aliases/{alias}?platform={platforms}")
     @Headers("Content-Type: application/json; charset=utf-8")
     void deleteAlas(@Param("alias") String alias, @Param("platforms") String platforms);
+
+    @RequestLine("DELETE /v4/devices/{registration_id}")
+    @Headers("Content-Type: application/json; charset=utf-8")
+    void deleteDevice(@Param("registration_id") String registrationId);
 }

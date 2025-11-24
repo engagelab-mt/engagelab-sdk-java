@@ -6,7 +6,7 @@
 
     <groupId>io.github.engagelab-mt</groupId>
     <artifactId>engagelab-sdk-java-project</artifactId>
-    <version>0.0.17</version>
+    <version>0.0.18</version>
     <packaging>pom</packaging>
 
     <modules>
