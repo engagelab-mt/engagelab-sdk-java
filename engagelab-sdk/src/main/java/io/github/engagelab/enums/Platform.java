@@ -4,6 +4,7 @@ public enum Platform {
 
     android,
     ios,
+    hmos,
     all,
 
 }

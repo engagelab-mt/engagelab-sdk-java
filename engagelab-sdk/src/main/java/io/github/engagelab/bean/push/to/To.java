@@ -31,4 +31,28 @@ public class To {
     @JsonProperty("live_activity_id")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String liveActivityId;
+
+    /**
+     * 用户分群配置
+     * <p>用于指定页面创建的用户分群 ID</p>
+     * <p>⚠️ 目前限制一次只能推送一个分群</p>
+     */
+    @JsonProperty("seg")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Seg seg;
+
+    /**
+     * 用户分群
+     */
+    @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Seg {
+        /**
+         * 用户分群 ID
+         * <p>在页面创建的用户分群的 ID</p>
+         */
+        @JsonProperty("id")
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        private String id;
+    }
 }
