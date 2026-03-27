@@ -8,10 +8,21 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
-import io.github.engagelab.bean.plan.*;
+import io.github.engagelab.bean.plan.PushPlanBatchDeleteResult;
+import io.github.engagelab.bean.plan.PushPlanDeleteParam;
+import io.github.engagelab.bean.plan.PushPlanDeleteResult;
+import io.github.engagelab.bean.plan.PushPlanListParam;
+import io.github.engagelab.bean.plan.PushPlanListResult;
+import io.github.engagelab.bean.plan.PushPlanMsgQueryParam;
+import io.github.engagelab.bean.plan.PushPlanMsgQueryResult;
+import io.github.engagelab.bean.plan.PushPlanParam;
+import io.github.engagelab.bean.plan.PushPlanResult;
 import io.github.engagelab.client.PushPlanClient;
 import io.github.engagelab.codec.ApiErrorDecoder;
 import lombok.NonNull;
+
+import java.net.URI;
+import java.util.List;
 
 /**
  * 推送计划API
@@ -41,7 +52,7 @@ public class PushPlanApi {
      * @param param 查询参数
      * @return 推送计划列表结果
      */
-    public PushPlanListResult queryList(PushPlanListParam param) {
+    public PushPlanListResult queryList(@NonNull PushPlanListParam param) {
         return pushPlanClient.queryList(param.getPageIndex(), param.getPageSize(), param.getSendSource(), param.getSearchDescription());
     }
 
@@ -61,8 +72,21 @@ public class PushPlanApi {
      * @param param 删除参数
      * @return 删除结果
      */
-    public PushPlanDeleteResult delete(PushPlanDeleteParam param) {
+    public PushPlanDeleteResult delete(@NonNull PushPlanDeleteParam param) {
         return pushPlanClient.delete(param.getPlanId());
+    }
+
+    /**
+     * 批量删除推送计划
+     *
+     * @param planIds 推送计划ID列表
+     * @return 批量删除结果
+     */
+    public PushPlanBatchDeleteResult batchDelete(@NonNull List<String> planIds) {
+        if (planIds.isEmpty()) {
+            throw new IllegalArgumentException("planIds must not be empty");
+        }
+        return pushPlanClient.batchDelete(String.join(",", planIds));
     }
 
     public static class Builder {
@@ -73,7 +97,6 @@ public class PushPlanApi {
         private String masterSecret;
         private Logger.Level loggerLevel = Logger.Level.BASIC;
 
-        // 设置主机地址
         public Builder setHost(@NonNull String host) {
             this.host = host;
             return this;
@@ -102,6 +125,13 @@ public class PushPlanApi {
         public PushPlanApi build() {
             PushPlanClient pushPlanClient = Feign.builder()
                     .client(client)
+                    // Feign encodes commas in path params as %2C; decode via URI.getPath() since
+                    // RFC 3986 allows commas in path segments unencoded.
+                    .requestInterceptor(template -> {
+                        URI uri = URI.create(template.url());
+                        String rawQuery = uri.getRawQuery();
+                        template.uri(rawQuery != null ? uri.getPath() + "?" + rawQuery : uri.getPath());
+                    })
                     .requestInterceptor(new BasicAuthRequestInterceptor(appKey, masterSecret))
                     .encoder(new JacksonEncoder())
                     .decoder(new JacksonDecoder())

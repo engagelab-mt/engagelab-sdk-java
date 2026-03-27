@@ -3,18 +3,18 @@ package io.github.engagelab.api;
 import io.github.engagelab.bean.device.*;
 import io.github.engagelab.enums.Platform;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class DeviceApiTest {
 
     @Autowired
@@ -30,7 +30,7 @@ public class DeviceApiTest {
 
     @Test
     public void getDevice() {
-        DeviceGetResult result = deviceApi.getDevice("13165ffa4e1a3e38068");
+        DeviceGetResult result = deviceApi.getDevice("140fe1da9e2c7a7eeea");
         log.info("getDevice result:{}", result);
     }
 

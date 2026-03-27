@@ -1,18 +1,28 @@
 package io.github.engagelab.api;
 
-import io.github.engagelab.bean.plan.*;
+import io.github.engagelab.bean.plan.PushPlanBatchDeleteResult;
+import io.github.engagelab.bean.plan.PushPlanDeleteParam;
+import io.github.engagelab.bean.plan.PushPlanDeleteResult;
+import io.github.engagelab.bean.plan.PushPlanListParam;
+import io.github.engagelab.bean.plan.PushPlanListResult;
+import io.github.engagelab.bean.plan.PushPlanMsgQueryParam;
+import io.github.engagelab.bean.plan.PushPlanMsgQueryResult;
+import io.github.engagelab.bean.plan.PushPlanParam;
+import io.github.engagelab.bean.plan.PushPlanResult;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
 
 @Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class PushPlanApiTest {
 
     @Autowired
@@ -82,6 +92,12 @@ public class PushPlanApiTest {
         param.setPlanId("push_20231001_001");
         PushPlanDeleteResult result = pushPlanApi.delete(param);
         log.info("删除推送计划结果: {}", result);
+    }
+
+    @Test
+    public void batchDeleteTest() {
+        PushPlanBatchDeleteResult result = pushPlanApi.batchDelete(Arrays.asList("push_20231001_001", "push_20231001_002"));
+        log.info("批量删除推送计划结果: {}", result);
     }
 
     @Test

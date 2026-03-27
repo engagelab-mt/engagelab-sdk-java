@@ -14,11 +14,11 @@ import io.github.engagelab.constants.ApiConstants;
 import io.github.engagelab.enums.Platform;
 import io.github.engagelab.enums.event.Event;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,7 +27,7 @@ import java.util.Map;
 
 @Slf4j
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class PushApiTest {
 
     @Autowired
@@ -69,6 +69,37 @@ public class PushApiTest {
         param.setBody(body);
         PushResult result = pushApi.push(param);
         log.info("result:{}", result);
+    }
+
+    @Test
+    public void pushWithOppoImageTest() {
+        PushParam param = new PushParam();
+        PushParam.Body body = new PushParam.Body();
+
+        NotificationMessage notificationMessage = new NotificationMessage();
+        notificationMessage.setAlert("Hello from EngageLab SDK");
+        body.setNotification(notificationMessage);
+
+        // 配置 OPPO 第三方通道（大图/小图）
+        Map<String, Object> oppo = new HashMap<>();
+        oppo.put("big_picture_id", "test_big_picture_id");
+        oppo.put("small_picture_id", "test_small_picture_id");
+        oppo.put("channel_id", "test_channel");
+        oppo.put("notify_level", 2);
+
+        Map<String, Object> thirdPartyChannel = new HashMap<>();
+        thirdPartyChannel.put("oppo", oppo);
+
+        Options options = new Options();
+        options.setThirdPartyChannel(thirdPartyChannel);
+        body.setOptions(options);
+
+        body.setPlatform(Collections.singletonList(Platform.android));
+        param.setTo(ApiConstants.To.ALL);
+        param.setBody(body);
+
+        PushResult result = pushApi.push(param);
+        log.info("oppo push result:{}", result);
     }
 
     @Test

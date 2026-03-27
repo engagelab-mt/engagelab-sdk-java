@@ -2,6 +2,9 @@
 .idea
 *.iml
 
+# Local config with credentials, do not commit
+*-local.yml
+
 # Compiled class file
 *.class
 

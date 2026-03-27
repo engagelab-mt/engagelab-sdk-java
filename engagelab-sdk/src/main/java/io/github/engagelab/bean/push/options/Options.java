@@ -35,6 +35,23 @@ public class Options {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map<String, Object> multiLanguage;
 
+    /**
+     * 第三方通道配置，key 为通道名称，value 为通道参数对象。
+     * <p>使用 Map 以保持灵活性，便于在不发版的情况下适配 API 字段变更。</p>
+     *
+     * <p>OPPO 通道示例：</p>
+     * <pre>{@code
+     * Map<String, Object> oppo = new HashMap<>();
+     * oppo.put("big_picture_id",  "上传图片 API 返回的大图标识");  // 大图，style=3 时必填
+     * oppo.put("small_picture_id", "上传图片 API 返回的小图标识"); // 小图标
+     * oppo.put("channel_id",       "通知栏分类");
+     * oppo.put("notify_level",     1); // 1=通知栏 2=通知栏+锁屏 16=全部
+     *
+     * Map<String, Object> thirdPartyChannel = new HashMap<>();
+     * thirdPartyChannel.put("oppo", oppo);
+     * options.setThirdPartyChannel(thirdPartyChannel);
+     * }</pre>
+     */
     @JsonProperty("third_party_channel")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map<String, Object> thirdPartyChannel;

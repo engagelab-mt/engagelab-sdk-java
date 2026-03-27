@@ -54,4 +54,12 @@ public interface PushPlanClient {
      */
     @RequestLine("DELETE /v4/push_plan/{planId}")
     PushPlanDeleteResult delete(@Param("planId") String planId);
+
+    /**
+     * 批量删除推送计划
+     * @param planIds 推送计划标识符，多个 ID 用英文逗号分隔，例如：id1,id2,id3
+     * @return 批量删除结果
+     */
+    @RequestLine("DELETE /v4/push_plan/batch/{planIds}")
+    PushPlanBatchDeleteResult batchDelete(@Param("planIds") String planIds);
 }
