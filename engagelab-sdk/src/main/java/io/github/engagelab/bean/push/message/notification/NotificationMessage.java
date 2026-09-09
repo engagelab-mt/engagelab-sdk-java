@@ -14,7 +14,7 @@ public class NotificationMessage {
 
     @JsonProperty("alert")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String alert;
+    private Object alert;
 
     @JsonProperty("android")
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -33,7 +33,7 @@ public class NotificationMessage {
     public static class Android {
         @JsonProperty("alert")
         @JsonInclude(JsonInclude.Include.NON_NULL)
-        private String alert;
+        private Object alert;
 
         @JsonProperty("title")
         @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -95,6 +95,10 @@ public class NotificationMessage {
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private Integer badgeAddNumber;
 
+        @JsonProperty("badge_set_num")
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        private Integer badgeSetNumber;
+
         @JsonProperty("badge_class")
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private String badgeClass;
@@ -106,6 +110,10 @@ public class NotificationMessage {
         @JsonProperty("group_id")
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private String groupId;
+
+        @JsonProperty("is_fold")
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        private Boolean fold;
 
         @Data
         @JsonIgnoreProperties(ignoreUnknown = true)

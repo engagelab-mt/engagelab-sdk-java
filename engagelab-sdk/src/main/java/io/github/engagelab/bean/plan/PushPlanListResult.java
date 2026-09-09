@@ -40,9 +40,9 @@ public class PushPlanListResult {
         /**
          * 推送计划ID
          */
-        @JsonProperty("push_id")
+        @JsonProperty("plan_id")
         @JsonInclude(JsonInclude.Include.NON_NULL)
-        private String pushId;
+        private String planId;
 
         /**
          * 推送计划描述
@@ -71,5 +71,9 @@ public class PushPlanListResult {
         @JsonProperty("last_used_time")
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private Long lastUsedTime;
+
+        @JsonProperty("entity_tag")
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        private String entityTag;
     }
 }

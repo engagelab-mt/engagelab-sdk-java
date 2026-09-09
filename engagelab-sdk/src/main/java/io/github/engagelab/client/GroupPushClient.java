@@ -10,7 +10,7 @@ import io.github.engagelab.bean.push.GroupPushResult;
  */
 public interface GroupPushClient {
 
-    @RequestLine("POST v4/grouppush")
+    @RequestLine("POST /v4/grouppush")
     @Headers("Content-Type: application/json; charset=utf-8")
     GroupPushResult push(GroupPushParam param);
 

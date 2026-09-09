@@ -18,6 +18,10 @@ public interface PushClient {
     @Headers("Content-Type: application/json; charset=utf-8")
     PushResult push(PushParam param);
 
+    @RequestLine("POST /v4/push/validate")
+    @Headers("Content-Type: application/json; charset=utf-8")
+    PushResult validate(PushParam param);
+
     @RequestLine("POST /v4/batch/push/regid")
     @Headers("Content-Type: application/json; charset=utf-8")
     BatchPushResult batchPushByRegId(BatchPushParam param);

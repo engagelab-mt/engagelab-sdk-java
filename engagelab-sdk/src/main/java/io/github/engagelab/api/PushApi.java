@@ -56,6 +56,10 @@ public class PushApi {
         return pushClient.push(param);
     }
 
+    public PushResult validate(@NonNull PushParam param) {
+        return pushClient.validate(param);
+    }
+
     public static class Builder {
 
         private String host;

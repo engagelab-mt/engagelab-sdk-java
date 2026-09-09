@@ -85,4 +85,8 @@ public class Options {
     @JsonProperty("cid")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String cid;
+
+    @JsonProperty("auto_truncation")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Boolean autoTruncation;
 }

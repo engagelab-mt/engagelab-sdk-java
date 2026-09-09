@@ -9,7 +9,7 @@ import java.util.List;
 public class DeviceSetParam {
 
     @JsonProperty("tags")
-    private Tags tags;
+    private Object tags;
 
     @JsonProperty("alias")
     private String alias;

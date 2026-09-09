@@ -17,7 +17,7 @@ public class CustomMessage {
 
     @JsonProperty("msg_content")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String content;
+    public Object content;
 
     @JsonProperty("content_type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -26,5 +26,13 @@ public class CustomMessage {
     @JsonProperty("extras")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public Map<String, Object> extras;
+
+    @JsonProperty("test_message")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public Boolean testMessage;
+
+    @JsonProperty("receipt_id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String receiptId;
 
 }

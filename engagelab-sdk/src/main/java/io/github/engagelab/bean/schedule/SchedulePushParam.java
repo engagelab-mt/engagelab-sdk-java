@@ -43,6 +43,18 @@ public class SchedulePushParam {
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private Periodical periodical;
 
+        @JsonProperty("intelligent")
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        private Intelligent intelligent;
+
+        @Data
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class Intelligent {
+            @JsonProperty("backup_time")
+            @JsonInclude(JsonInclude.Include.NON_NULL)
+            private String backupTime;
+        }
+
         @Data
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Periodical {

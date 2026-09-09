@@ -8,45 +8,40 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
-import io.github.engagelab.bean.status.*;
-import io.github.engagelab.client.StatusClient;
+import io.github.engagelab.bean.voice.VoiceResult;
+import io.github.engagelab.bean.voice.VoiceUploadParam;
+import io.github.engagelab.client.VoiceClient;
 import io.github.engagelab.codec.ApiErrorDecoder;
+import io.github.engagelab.codec.VoiceMultipartEncoder;
 import lombok.NonNull;
 
+import java.io.File;
 import java.util.List;
-import java.util.Map;
 
-public class StatusApi {
+public class VoiceApi {
+    private final VoiceClient voiceClient;
 
-    private final StatusClient statusClient;
-
-    protected StatusApi(@NonNull StatusClient statusClient) {
-        this.statusClient = statusClient;
+    protected VoiceApi(@NonNull VoiceClient voiceClient) {
+        this.voiceClient = voiceClient;
     }
 
-    public UserStatusGetResult getUserStatus(UserStatusGetParam param) {
-        return statusClient.getUserStatus(param.getTimeUnit(), param.getStartTime(), param.getDuration());
+    public VoiceResult create(@NonNull String language, @NonNull File file) {
+        return voiceClient.create(new VoiceUploadParam(language, file));
     }
 
-    public Map<String, MessageStatusGetResult> getMessageStatus(MessageStatusGetParam param) {
-        return statusClient.getMessageStatus(String.join(",", param.getMessageIds()));
+    public List<VoiceResult> list() {
+        return voiceClient.list();
     }
 
-    public Map<String, MessageLifecycleGetResult> getMessageLifecycle(MessageLifecycleGetParam param) {
-        return statusClient.getMessageLifecycle(param.getMessageId(),String.join(",", param.getRegistrationIds()));
+    public VoiceResult get(@NonNull String language) {
+        return voiceClient.get(language);
     }
 
-    public List<MessageLifecycleGetResult> getBatchMessageLifecycle(List<String> messageIds) {
-        return statusClient.getBatchMessageLifecycle(String.join(",", messageIds));
-    }
-
-    public Map<String, MessageStatusGetResult> getPlanDetail(PlanDetailGetParam param) {
-        return statusClient.getPlanDetail(String.join(",", param.getPlanIds()),
-                param.getStartDate(), param.getEndDate());
+    public void delete(@NonNull String language) {
+        voiceClient.delete(language);
     }
 
     public static class Builder {
-
         private String host;
         private Client client = new OkHttpClient();
         private String appKey;
@@ -78,18 +73,17 @@ public class StatusApi {
             return this;
         }
 
-        public StatusApi build() {
-            StatusClient statusClient = Feign.builder()
+        public VoiceApi build() {
+            VoiceClient voiceClient = Feign.builder()
                     .client(client)
                     .requestInterceptor(new BasicAuthRequestInterceptor(appKey, masterSecret))
-                    .encoder(new JacksonEncoder())
+                    .encoder(new VoiceMultipartEncoder(new JacksonEncoder()))
                     .decoder(new JacksonDecoder())
                     .errorDecoder(new ApiErrorDecoder())
                     .logger(new Slf4jLogger())
                     .logLevel(loggerLevel)
-                    .target(StatusClient.class, host);
-            return new StatusApi(statusClient);
+                    .target(VoiceClient.class, host);
+            return new VoiceApi(voiceClient);
         }
     }
-
 }
