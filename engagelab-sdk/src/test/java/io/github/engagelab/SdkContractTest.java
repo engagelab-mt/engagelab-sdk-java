@@ -12,6 +12,7 @@ import io.github.engagelab.api.VoiceApi;
 import io.github.engagelab.bean.app.AppVipStatusResult;
 import io.github.engagelab.bean.device.DeviceTokenRegisterParam;
 import io.github.engagelab.bean.device.DeviceTokenRegisterResult;
+import io.github.engagelab.bean.device.DeviceSetParam;
 import io.github.engagelab.bean.image.ImageParam;
 import io.github.engagelab.bean.push.BatchPushParam;
 import io.github.engagelab.bean.push.BatchPushResult;
@@ -123,6 +124,29 @@ class SdkContractTest {
         assertEquals(1, vip.getVipStatus());
         assertEquals(1775059200L, vip.getVipEndTime());
         assertEquals("/v4/app/vip/status", server.takeRequest().getPath());
+    }
+
+    @Test
+    void deviceSetSupportsTypedTagsAndExplicitClear() throws Exception {
+        server.enqueue(new MockResponse());
+        server.enqueue(new MockResponse());
+        DeviceApi api = new DeviceApi.Builder().setHost(host()).setAppKey("key").setMasterSecret("secret").build();
+
+        DeviceSetParam.Tags tags = new DeviceSetParam.Tags();
+        tags.setAdd(Collections.singletonList("tag-a"));
+        DeviceSetParam update = new DeviceSetParam();
+        update.setTags(tags);
+        api.setDevice("r1", update);
+        JsonNode updateJson = mapper.readTree(server.takeRequest().getBody().readUtf8());
+        assertEquals("tag-a", updateJson.at("/tags/add/0").asText());
+
+        DeviceSetParam clear = new DeviceSetParam();
+        clear.clearTags();
+        api.setDevice("r1", clear);
+        JsonNode clearJson = mapper.readTree(server.takeRequest().getBody().readUtf8());
+        assertEquals("", clearJson.get("tags").asText());
+        assertThrows(NoSuchMethodException.class,
+                () -> DeviceSetParam.class.getMethod("setTags", Object.class));
     }
 
     @Test

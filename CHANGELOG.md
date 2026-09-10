@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Completed typed request and response fields for Push, Schedule, Status, Plan, and Group Push
+- Added type-safe Device tag updates with `setTags(Tags)` and explicit clearing with `clearTags()`
 - Aligned Voice multipart upload and OPPO Image JSON URL requests with the official REST protocol
 - Aligned Tag count, quota, status, and Plan Detail parameters and responses with the official REST protocol
 - Aligned Jackson components on version 2.18.0 to avoid runtime incompatibility
