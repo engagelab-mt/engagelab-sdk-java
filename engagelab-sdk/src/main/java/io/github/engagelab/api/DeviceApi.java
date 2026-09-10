@@ -92,18 +92,6 @@ public class DeviceApi {
     }
 
     public DeviceTokenRegisterResult registerToken(@NonNull DeviceTokenRegisterParam param) {
-        if (param.getTokens() == null || param.getTokens().isEmpty() || param.getTokens().size() > 500) {
-            throw new IllegalArgumentException("tokens length must be between 1 and 500");
-        }
-        if (!"android".equals(param.getPlatform()) && !"ios".equals(param.getPlatform())) {
-            throw new IllegalArgumentException("platform must be android or ios");
-        }
-        if ("ios".equals(param.getPlatform()) && param.getApnsProduction() == null) {
-            throw new IllegalArgumentException("apns_production is required for ios");
-        }
-        if ("android".equals(param.getPlatform()) && param.getApnsProduction() != null) {
-            throw new IllegalArgumentException("apns_production must not be set for android");
-        }
         return deviceClient.registerToken(param);
     }
 

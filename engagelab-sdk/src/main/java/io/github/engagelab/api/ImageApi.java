@@ -35,11 +35,6 @@ public class ImageApi {
      * @return 图片标识结果
      */
     public ImageResult uploadOppoImage(@NonNull ImageParam param) {
-        boolean hasBigPicture = param.getBigPictureUrl() != null && !param.getBigPictureUrl().trim().isEmpty();
-        boolean hasSmallPicture = param.getSmallPictureUrl() != null && !param.getSmallPictureUrl().trim().isEmpty();
-        if (hasBigPicture == hasSmallPicture) {
-            throw new IllegalArgumentException("exactly one of big_picture_url and small_picture_url is required");
-        }
         return imageClient.uploadOppoImage(param);
     }
 

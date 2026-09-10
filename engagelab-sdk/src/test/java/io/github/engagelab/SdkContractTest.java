@@ -190,14 +190,8 @@ class SdkContractTest {
     }
 
     @Test
-    void imageUsesJsonUrlAndRejectsInvalidCombinations() throws Exception {
+    void imageUsesJsonUrl() throws Exception {
         ImageApi api = new ImageApi.Builder().setHost(host()).setAppKey("key").setMasterSecret("secret").build();
-        ImageParam invalid = new ImageParam();
-        assertThrows(IllegalArgumentException.class, () -> api.uploadOppoImage(invalid));
-        invalid.setBigPictureUrl("https://example.com/big.jpg");
-        invalid.setSmallPictureUrl("https://example.com/small.jpg");
-        assertThrows(IllegalArgumentException.class, () -> api.uploadOppoImage(invalid));
-
         server.enqueue(new MockResponse().setBody("{\"big_picture_id\":\"big-1\"}"));
         ImageParam valid = new ImageParam();
         valid.setBigPictureUrl("https://example.com/big.jpg");
