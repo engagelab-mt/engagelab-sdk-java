@@ -218,7 +218,3 @@ api-example
 * [GroupPushApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/GroupPushApiTest.java)
 * [PushPlanApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/PushPlanApiTest.java)
 * [ImageApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/ImageApiTest.java)
-
-Newly covered REST operations include `PushApi.validate`, `DeviceApi.registerToken`,
-the four `VoiceApi` operations, `StatusApi.getPlanDetail`,
-`StatusApi.getBatchMessageLifecycle`, and `AppApi.getVipStatus`.
