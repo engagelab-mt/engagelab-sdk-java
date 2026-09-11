@@ -26,7 +26,7 @@ support JDK 1.8.
     <dependency>
         <groupId>io.github.engagelab-mt</groupId>
         <artifactId>engagelab-sdk-java</artifactId>
-        <version>0.0.21</version>
+        <version>0.0.22</version>
     </dependency>
 </dependencies>
 ```
@@ -89,7 +89,7 @@ Or exclude the conflicting transitive dependency entirely and declare your own:
 <dependency>
     <groupId>io.github.engagelab-mt</groupId>
     <artifactId>engagelab-sdk-java</artifactId>
-    <version>0.0.21</version>
+    <version>0.0.22</version>
     <exclusions>
         <exclusion>
             <groupId>com.fasterxml.jackson.core</groupId>

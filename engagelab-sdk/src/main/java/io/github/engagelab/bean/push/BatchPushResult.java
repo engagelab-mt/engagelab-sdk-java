@@ -27,7 +27,7 @@ public class BatchPushResult {
         private Error error;
 
         /**
-         * @deprecated use {@link #getMsgId()} instead.
+         * @deprecated use {@code getMsgId()} instead.
          */
         @Deprecated
         @JsonIgnore
@@ -36,7 +36,7 @@ public class BatchPushResult {
         }
 
         /**
-         * @deprecated use {@link #setMsgId(Long)} instead.
+         * @deprecated use {@code setMsgId(Long)} instead.
          */
         @Deprecated
         @JsonIgnore
