@@ -6,7 +6,7 @@
 
     <groupId>io.github.engagelab-mt</groupId>
     <artifactId>engagelab-sdk-java</artifactId>
-    <version>0.0.21</version>
+    <version>0.0.22</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -15,8 +15,8 @@
         <okhttp.version>4.12.0</okhttp.version>
         <lombok.version>1.18.30</lombok.version>
         <feign-core.version>13.5</feign-core.version>
-        <feign-form.version>3.8.0</feign-form.version>
-        <jackson-datatype-jsr310.version>2.15.3</jackson-datatype-jsr310.version>
+        <jackson.version>2.18.0</jackson.version>
+        <junit.version>5.11.3</junit.version>
     </properties>
 
     <dependencies>
@@ -58,7 +58,19 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>${jackson-datatype-jsr310.version}</version>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>${okhttp.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -90,6 +102,11 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
+            </plugin>
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>

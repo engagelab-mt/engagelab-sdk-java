@@ -28,4 +28,14 @@ public interface StatusClient {
     @Headers("Content-Type: application/json; charset=utf-8")
     Map<String, MessageLifecycleGetResult> getMessageLifecycle(@Param("message_id") String messageId, @Param("registration_ids") String registrationIds);
 
+    @RequestLine("GET /v4/status/batch/message?message_ids={message_ids}")
+    @Headers("Content-Type: application/json; charset=utf-8")
+    List<MessageLifecycleGetResult> getBatchMessageLifecycle(@Param("message_ids") String messageIds);
+
+    @RequestLine("GET /v4/status/plan/detail?plan_ids={plan_ids}&start_date={start_date}&end_date={end_date}")
+    @Headers("Content-Type: application/json; charset=utf-8")
+    Map<String, MessageStatusGetResult> getPlanDetail(@Param("plan_ids") String planIds,
+                                                       @Param("start_date") String startDate,
+                                                       @Param("end_date") String endDate);
+
 }

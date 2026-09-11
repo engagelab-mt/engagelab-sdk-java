@@ -8,45 +8,23 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
-import io.github.engagelab.bean.status.*;
-import io.github.engagelab.client.StatusClient;
+import io.github.engagelab.bean.app.AppVipStatusResult;
+import io.github.engagelab.client.AppClient;
 import io.github.engagelab.codec.ApiErrorDecoder;
 import lombok.NonNull;
 
-import java.util.List;
-import java.util.Map;
+public class AppApi {
+    private final AppClient appClient;
 
-public class StatusApi {
-
-    private final StatusClient statusClient;
-
-    protected StatusApi(@NonNull StatusClient statusClient) {
-        this.statusClient = statusClient;
+    protected AppApi(@NonNull AppClient appClient) {
+        this.appClient = appClient;
     }
 
-    public UserStatusGetResult getUserStatus(UserStatusGetParam param) {
-        return statusClient.getUserStatus(param.getTimeUnit(), param.getStartTime(), param.getDuration());
-    }
-
-    public Map<String, MessageStatusGetResult> getMessageStatus(MessageStatusGetParam param) {
-        return statusClient.getMessageStatus(String.join(",", param.getMessageIds()));
-    }
-
-    public Map<String, MessageLifecycleGetResult> getMessageLifecycle(MessageLifecycleGetParam param) {
-        return statusClient.getMessageLifecycle(param.getMessageId(),String.join(",", param.getRegistrationIds()));
-    }
-
-    public List<MessageLifecycleGetResult> getBatchMessageLifecycle(List<String> messageIds) {
-        return statusClient.getBatchMessageLifecycle(String.join(",", messageIds));
-    }
-
-    public Map<String, MessageStatusGetResult> getPlanDetail(PlanDetailGetParam param) {
-        return statusClient.getPlanDetail(String.join(",", param.getPlanIds()),
-                param.getStartDate(), param.getEndDate());
+    public AppVipStatusResult getVipStatus() {
+        return appClient.getVipStatus();
     }
 
     public static class Builder {
-
         private String host;
         private Client client = new OkHttpClient();
         private String appKey;
@@ -78,8 +56,8 @@ public class StatusApi {
             return this;
         }
 
-        public StatusApi build() {
-            StatusClient statusClient = Feign.builder()
+        public AppApi build() {
+            AppClient appClient = Feign.builder()
                     .client(client)
                     .requestInterceptor(new BasicAuthRequestInterceptor(appKey, masterSecret))
                     .encoder(new JacksonEncoder())
@@ -87,9 +65,8 @@ public class StatusApi {
                     .errorDecoder(new ApiErrorDecoder())
                     .logger(new Slf4jLogger())
                     .logLevel(loggerLevel)
-                    .target(StatusClient.class, host);
-            return new StatusApi(statusClient);
+                    .target(AppClient.class, host);
+            return new AppApi(appClient);
         }
     }
-
 }

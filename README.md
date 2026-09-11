@@ -14,6 +14,7 @@ REST API DOC:
 * [REST API - Message Withdraw](https://www.engagelab.com/zh_CN/docs/app-push/developer-guide/rest-api/message-recall-api)
 * [REST API - Delete User](https://www.engagelab.com/zh_CN/docs/app-push/developer-guide/rest-api/delete-user-api)
 * [REST API - Image](https://www.engagelab.com/zh_CN/docs/app-push/developer-guide/rest-api/image-api)
+* [REST API - Voice](https://www.engagelab.com/zh_CN/docs/app-push/developer-guide/rest-api/voice-api)
 
 support JDK 1.8.
 
@@ -25,7 +26,7 @@ support JDK 1.8.
     <dependency>
         <groupId>io.github.engagelab-mt</groupId>
         <artifactId>engagelab-sdk-java</artifactId>
-        <version>0.0.21</version>
+        <version>0.0.22</version>
     </dependency>
 </dependencies>
 ```
@@ -55,7 +56,7 @@ The SDK transitively pulls in the following libraries. If your project uses diff
 | feign-core / feign-okhttp / feign-jackson | 13.5 |
 | okhttp3 | 4.12.0 |
 | jackson-databind | 2.18.0 |
-| jackson-datatype-jsr310 | 2.15.3 |
+| jackson-datatype-jsr310 | 2.18.0 |
 | slf4j-api | 2.0.16 |
 
 Example — override jackson to match your project:
@@ -88,7 +89,7 @@ Or exclude the conflicting transitive dependency entirely and declare your own:
 <dependency>
     <groupId>io.github.engagelab-mt</groupId>
     <artifactId>engagelab-sdk-java</artifactId>
-    <version>0.0.21</version>
+    <version>0.0.22</version>
     <exclusions>
         <exclusion>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -108,6 +109,8 @@ Or exclude the conflicting transitive dependency entirely and declare your own:
 | `DataCenterHost.SG` | Singapore |
 | `DataCenterHost.VA` | US Virginia |
 | `DataCenterHost.FFM` | Germany Frankfurt |
+| `DataCenterHost.JPN` | Japan |
+| `DataCenterHost.BRA` | Brazil |
 
 create api
 > also can set client and loggerLevel if you need.
@@ -181,6 +184,24 @@ public PushPlanApi pushPlanApi() {
 @Bean
 public ImageApi imageApi() {
     return new ImageApi.Builder()
+            .setHost(DataCenterHost.HK.getUrl())
+            .setAppKey(appKey)
+            .setMasterSecret(masterSecret)
+            .build();
+}
+
+@Bean
+public VoiceApi voiceApi() {
+    return new VoiceApi.Builder()
+            .setHost(DataCenterHost.HK.getUrl())
+            .setAppKey(appKey)
+            .setMasterSecret(masterSecret)
+            .build();
+}
+
+@Bean
+public AppApi appApi() {
+    return new AppApi.Builder()
             .setHost(DataCenterHost.HK.getUrl())
             .setAppKey(appKey)
             .setMasterSecret(masterSecret)

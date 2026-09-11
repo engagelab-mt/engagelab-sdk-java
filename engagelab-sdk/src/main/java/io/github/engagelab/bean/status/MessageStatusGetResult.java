@@ -1,10 +1,19 @@
 package io.github.engagelab.bean.status;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.util.Map;
+
 @Data
 public class MessageStatusGetResult {
+
+    @JsonProperty("plan_id")
+    private String planId;
+
+    @JsonProperty("pushContent")
+    private Map<String, Object> pushContent;
 
     @JsonProperty("targets")
     private Long target;
@@ -32,9 +41,19 @@ public class MessageStatusGetResult {
         @JsonProperty("message")
         private Message custom;
 
+        @JsonProperty("live_activity")
+        private Message liveActivity;
+
+        @JsonProperty("voip")
+        private Message voip;
+
+        @JsonProperty("inapp_message")
+        private Message inAppMessage;
+
         @Data
         public static class Message {
             @JsonProperty("target")
+            @JsonAlias("targets")
             private Long target;
 
             @JsonProperty("sent")
@@ -47,6 +66,7 @@ public class MessageStatusGetResult {
             private Long impression;
 
             @JsonProperty("click")
+            @JsonAlias("clicks")
             private Long click;
 
             @JsonProperty("sub_android")
@@ -54,6 +74,9 @@ public class MessageStatusGetResult {
 
             @JsonProperty("sub_ios")
             private IOS ios;
+
+            @JsonProperty("sub_hmos")
+            private HMOS hmos;
 
             @Data
             public static class Android {
@@ -89,6 +112,15 @@ public class MessageStatusGetResult {
 
                 @JsonProperty("apns")
                 private Channel apns;
+            }
+
+            @Data
+            public static class HMOS {
+                @JsonProperty("engageLab_hmos")
+                private Channel engageLabHmos;
+
+                @JsonProperty("harmonyos")
+                private Channel harmonyOS;
             }
 
             @Data

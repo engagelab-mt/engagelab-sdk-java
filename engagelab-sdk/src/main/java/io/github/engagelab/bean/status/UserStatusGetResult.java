@@ -31,6 +31,9 @@ public class UserStatusGetResult {
         @JsonProperty("ios")
         private Platform iOS;
 
+        @JsonProperty("hmos")
+        private Platform hmos;
+
         @Data
         public static class Platform {
             @JsonProperty("new")
