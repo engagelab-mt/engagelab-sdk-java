@@ -193,6 +193,40 @@ class SdkContractTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
+    void batchResponsePreservesLegacyMsgIdAccessors() {
+        BatchPushResult.SinglePushResult result = new BatchPushResult.SinglePushResult();
+
+        result.setMsg_id(123L);
+
+        assertEquals(123L, result.getMsg_id());
+        assertEquals(123L, result.getMsgId());
+    }
+
+    @Test
+    void statusNestedMetricsAcceptSingularAndPluralKeys() throws Exception {
+        MessageStatusGetResult result = mapper.readValue(
+                "{\"sub\":{" +
+                        "\"notification\":{\"target\":11,\"click\":12}," +
+                        "\"message\":{\"targets\":21,\"clicks\":22}," +
+                        "\"live_activity\":{\"targets\":31,\"clicks\":32}," +
+                        "\"voip\":{\"targets\":41,\"clicks\":42}," +
+                        "\"inapp_message\":{\"targets\":51,\"clicks\":52}}}",
+                MessageStatusGetResult.class);
+
+        assertEquals(11L, result.getSub().getNotification().getTarget());
+        assertEquals(12L, result.getSub().getNotification().getClick());
+        assertEquals(21L, result.getSub().getCustom().getTarget());
+        assertEquals(22L, result.getSub().getCustom().getClick());
+        assertEquals(31L, result.getSub().getLiveActivity().getTarget());
+        assertEquals(32L, result.getSub().getLiveActivity().getClick());
+        assertEquals(41L, result.getSub().getVoip().getTarget());
+        assertEquals(42L, result.getSub().getVoip().getClick());
+        assertEquals(51L, result.getSub().getInAppMessage().getTarget());
+        assertEquals(52L, result.getSub().getInAppMessage().getClick());
+    }
+
+    @Test
     void statusPlanAndBatchLifecycleUseOfficialContracts() throws Exception {
         server.enqueue(new MockResponse().setBody("{\"plan-a\":{\"sub\":{\"notification\":{\"sub_hmos\":{\"harmonyos\":{\"delivered\":12}}},\"voip\":{\"delivered\":2}}}}"));
         server.enqueue(new MockResponse().setBody("[{\"message_id\":\"m1\",\"registration_id\":\"r1\",\"error_code\":1001,\"itime\":1775059200,\"channel\":\"FCM\"}]"));

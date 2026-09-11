@@ -1,5 +1,6 @@
 package io.github.engagelab.bean.status;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -52,6 +53,7 @@ public class MessageStatusGetResult {
         @Data
         public static class Message {
             @JsonProperty("target")
+            @JsonAlias("targets")
             private Long target;
 
             @JsonProperty("sent")
@@ -64,6 +66,7 @@ public class MessageStatusGetResult {
             private Long impression;
 
             @JsonProperty("click")
+            @JsonAlias("clicks")
             private Long click;
 
             @JsonProperty("sub_android")

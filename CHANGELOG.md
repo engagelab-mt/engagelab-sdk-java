@@ -34,5 +34,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `GroupPushApi.push`: corrected requests that previously used an invalid relative path; `GroupPushResult.successes`, `errors`, and `groupMsgId` remain unchanged.
 - `DeviceApi.getTagCount` and `DeviceApi.getTagQuota`: corrected multi-tag and platform parameter serialization.
+- `StatusApi.getMessageStatus`: correctly decodes both `target/click` and `targets/clicks` in notification, custom message, Live Activity, VoIP, and in-app message statistics.
+- `PushApi.batchPushByRegId` and `PushApi.batchPushByAlias`: retained the legacy `getMsg_id()` and `setMsg_id(long)` accessors while adding the nullable `msgId` result field.
 - `StatusApi.getPlanDetail`: corrected the plan IDs and date-range parameters and completed the typed statistics result.
 - Tests: added contract coverage for public request models, response parsing, Group Push results, partial Batch failures, and service error responses.

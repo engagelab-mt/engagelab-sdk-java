@@ -1,5 +1,6 @@
 package io.github.engagelab.bean.push;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -24,6 +25,24 @@ public class BatchPushResult {
         private Long msgId;
 
         private Error error;
+
+        /**
+         * @deprecated use {@link #getMsgId()} instead.
+         */
+        @Deprecated
+        @JsonIgnore
+        public long getMsg_id() {
+            return msgId == null ? 0L : msgId;
+        }
+
+        /**
+         * @deprecated use {@link #setMsgId(Long)} instead.
+         */
+        @Deprecated
+        @JsonIgnore
+        public void setMsg_id(long msgId) {
+            this.msgId = msgId;
+        }
     }
 
     @Data
