@@ -32,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- `ScheduleApi.getSchedulePush`: preserved the target, platform, notification, message, Live Activity, VoIP, and options returned by the schedule-detail API; flattened `audience/platform/...` responses are mapped to the existing `PushParam.to/body` accessors while `to/body` responses remain compatible.
 - `GroupPushApi.push`: corrected requests that previously used an invalid relative path; `GroupPushResult.successes`, `errors`, and `groupMsgId` remain unchanged.
 - `DeviceApi.getTagCount` and `DeviceApi.getTagQuota`: corrected multi-tag and platform parameter serialization.
 - `StatusApi.getMessageStatus`: correctly decodes both `target/click` and `targets/clicks` in notification, custom message, Live Activity, VoIP, and in-app message statistics.
