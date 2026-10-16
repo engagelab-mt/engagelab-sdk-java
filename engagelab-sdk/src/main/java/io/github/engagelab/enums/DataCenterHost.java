@@ -6,7 +6,9 @@ public enum DataCenterHost {
     SG("SG", "https://pushapi-sgp.engagelab.com"),
     HK("HK", "https://pushapi-hk.engagelab.com"),
     VA("VA", "https://pushapi-usva.engagelab.com"),
-    FFM("FFM", "https://pushapi-defra.engagelab.com");
+    FFM("FFM", "https://pushapi-defra.engagelab.com"),
+    JPN("JPN", "https://pushapi-jpn.engagelab.com"),
+    BRA("BRA", "https://pushapi-bra.engagelab.com");
 
     private final String area;
 

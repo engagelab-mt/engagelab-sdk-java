@@ -36,17 +36,17 @@ public interface DeviceClient {
     @Headers("Content-Type: application/json; charset=utf-8")
     void deleteTag(@Param("tag") String tag, @Param("platforms") String platforms);
 
-    @RequestLine("GET /v4/tags_count?tags={tags}&platform={platforms}")
+    @RequestLine("GET /v4/tags_count?tags={tags}&platform={platform}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    TagsCountGetResult getTagCount(@Param("tags") String tags, @Param("platforms") String platforms);
+    TagsCountGetResult getTagCount(@Param("tags") List<String> tags, @Param("platform") String platform);
 
     @RequestLine("GET /v4/tags/{tag}/registration_ids/{registration_id}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    TagsGetResult getTagStatus(@Param("tag") String tag, @Param("registration_id") String registrationId);
+    TagStatusGetResult getTagStatus(@Param("tag") String tag, @Param("registration_id") String registrationId);
 
-    @RequestLine("GET /v4/tags/quota-info?tags={tags}&platform={platforms}")
+    @RequestLine("GET /v4/tags/quota-info?tags={tags}&platform={platform}")
     @Headers("Content-Type: application/json; charset=utf-8")
-    TagQuotaGetResult getTagQuota(@Param("tags") String tags, @Param("platforms") String platforms);
+    TagQuotaGetResult getTagQuota(@Param("tags") List<String> tags, @Param("platform") String platform);
 
     @RequestLine("GET /v4/aliases/{alias}?platform={platforms}")
     @Headers("Content-Type: application/json; charset=utf-8")
@@ -59,4 +59,8 @@ public interface DeviceClient {
     @RequestLine("DELETE /v4/devices/{registration_id}")
     @Headers("Content-Type: application/json; charset=utf-8")
     void deleteDevice(@Param("registration_id") String registrationId);
+
+    @RequestLine("POST /v4/devices/token/registration_id")
+    @Headers("Content-Type: application/json; charset=utf-8")
+    DeviceTokenRegisterResult registerToken(DeviceTokenRegisterParam param);
 }

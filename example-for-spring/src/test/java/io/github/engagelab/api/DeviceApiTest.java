@@ -69,20 +69,20 @@ public class DeviceApiTest {
 
     @Test
     public void getTagCount() {
-        TagsCountGetResult result = deviceApi.getTagCount(Arrays.asList("13444444444", "13333333333"), Arrays.asList(Platform.android, Platform.ios));
+        TagsCountGetResult result = deviceApi.getTagCount(Arrays.asList("13444444444", "13333333333"), Platform.android);
         log.info("getTagCount:{}", result);
     }
 
     @Test
-    public void getTag() {
-        TagsGetResult result = deviceApi.getTagStatus("13333333333", "13165ffa4e1a3e38068");
+    public void getTagStatus() {
+        TagStatusGetResult result = deviceApi.getTagStatus("13333333333", "13165ffa4e1a3e38068");
         log.info("getTagStatus:{}", result);
     }
 
     @Test
-    public void getTagStatus() {
-        TagQuotaGetResult result = deviceApi.getTagQuota(Arrays.asList("13444444444", "13333333333"), Arrays.asList(Platform.android, Platform.ios));
-        log.info("getTagStatus result:{}", result);
+    public void getTagQuota() {
+        TagQuotaGetResult result = deviceApi.getTagQuota(Arrays.asList("13444444444", "13333333333"), Platform.android);
+        log.info("getTagQuota result:{}", result);
     }
 
     @Test

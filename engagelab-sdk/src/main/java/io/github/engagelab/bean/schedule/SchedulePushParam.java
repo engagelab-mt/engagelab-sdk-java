@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.github.engagelab.bean.push.PushParam;
 import io.github.engagelab.enums.TimeUnit;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class SchedulePushParam {
 
     @JsonProperty("push")
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonDeserialize(using = SchedulePushPayloadDeserializer.class)
     private PushParam push;
 
     @Data
@@ -42,6 +44,18 @@ public class SchedulePushParam {
         @JsonProperty("periodical")
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private Periodical periodical;
+
+        @JsonProperty("intelligent")
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        private Intelligent intelligent;
+
+        @Data
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class Intelligent {
+            @JsonProperty("backup_time")
+            @JsonInclude(JsonInclude.Include.NON_NULL)
+            private String backupTime;
+        }
 
         @Data
         @JsonIgnoreProperties(ignoreUnknown = true)
