@@ -3,6 +3,7 @@ package io.github.engagelab;
 import io.github.engagelab.api.ScheduleApi;
 import io.github.engagelab.bean.push.PushParam;
 import io.github.engagelab.bean.schedule.SchedulePushGetResult;
+import io.github.engagelab.enums.TimeUnit;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -41,6 +42,8 @@ class ScheduleResponseCompatibilityTest {
     @Test
     void getSchedulePushNormalizesFlattenedPushResponse() throws Exception {
         server.enqueue(new MockResponse().setBody("[{\"schedule_id\":\"s1\",\"name\":\"test\",\"enabled\":true,"
+                + "\"trigger\":{\"periodical\":{\"start\":\"2026-01-20 00:00:00\","
+                + "\"end\":\"2026-12-03 12:55:00\",\"time\":\"15:05:00\",\"time_unit\":\"day\"}},"
                 + "\"push\":{\"audience\":{\"registration_id\":[\"rid1\"]},\"platform\":\"android\","
                 + "\"notification\":{\"alert\":\"hello\"},"
                 + "\"options\":{\"time_to_live\":60,\"plan_id\":\"plan1\"}}}]")
@@ -49,6 +52,7 @@ class ScheduleResponseCompatibilityTest {
         List<SchedulePushGetResult> results = scheduleApi().getSchedulePush("s1");
 
         assertEquals(1, results.size());
+        assertEquals(TimeUnit.DAY, results.get(0).getTrigger().getPeriodical().getTimeUnit());
         PushParam push = results.get(0).getPush();
         assertNotNull(push);
         assertEquals("rid1", ((List<?>) ((Map<?, ?>) push.getTo()).get("registration_id")).get(0));
