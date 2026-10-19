@@ -13,6 +13,7 @@ import io.github.engagelab.client.StatusClient;
 import io.github.engagelab.codec.ApiErrorDecoder;
 import lombok.NonNull;
 
+import java.util.List;
 import java.util.Map;
 
 public class StatusApi {
@@ -33,6 +34,15 @@ public class StatusApi {
 
     public Map<String, MessageLifecycleGetResult> getMessageLifecycle(MessageLifecycleGetParam param) {
         return statusClient.getMessageLifecycle(param.getMessageId(),String.join(",", param.getRegistrationIds()));
+    }
+
+    public List<MessageLifecycleGetResult> getBatchMessageLifecycle(List<String> messageIds) {
+        return statusClient.getBatchMessageLifecycle(String.join(",", messageIds));
+    }
+
+    public Map<String, MessageStatusGetResult> getPlanDetail(PlanDetailGetParam param) {
+        return statusClient.getPlanDetail(String.join(",", param.getPlanIds()),
+                param.getStartDate(), param.getEndDate());
     }
 
     public static class Builder {

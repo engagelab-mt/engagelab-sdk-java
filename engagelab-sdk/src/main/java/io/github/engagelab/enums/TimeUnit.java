@@ -1,5 +1,7 @@
 package io.github.engagelab.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum TimeUnit {
 
     DAY("day", "为day时，point不能存在"),
@@ -12,6 +14,16 @@ public enum TimeUnit {
     TimeUnit(String value, String description) {
         this.value = value;
         this.description = description;
+    }
+
+    @JsonCreator
+    public static TimeUnit fromValue(String value) {
+        for (TimeUnit timeUnit : values()) {
+            if (timeUnit.name().equalsIgnoreCase(value) || timeUnit.value.equalsIgnoreCase(value)) {
+                return timeUnit;
+            }
+        }
+        throw new IllegalArgumentException("Unsupported time unit: " + value);
     }
 
 }

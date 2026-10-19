@@ -60,6 +60,10 @@ public class PushParam {
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private LiveActivityMessage liveActivity;
 
+        @JsonProperty("voip")
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        private Map<String, Object> voip;
+
         @JsonProperty("options")
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private Options options;
