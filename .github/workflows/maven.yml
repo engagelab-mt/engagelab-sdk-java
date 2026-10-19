@@ -2,12 +2,20 @@ name: Publish package to the Maven Central Repository
 on:
   release:
     types: [released]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to publish (for example v0.0.22)
+        required: true
+        type: string
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
       - name: Set up Maven
         uses: actions/setup-java@v4
         with:
