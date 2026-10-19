@@ -29,3 +29,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Local test configuration and generated reports
+.test-results/
+.env
+.env.local
+
+# Deterministic native voice test data
+!engagelab-sdk/src/test/resources/native/voice/en.zip

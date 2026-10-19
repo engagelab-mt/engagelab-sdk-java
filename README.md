@@ -218,3 +218,7 @@ api-example
 * [GroupPushApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/GroupPushApiTest.java)
 * [PushPlanApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/PushPlanApiTest.java)
 * [ImageApi](https://github.com/engagelab-mt/engagelab-sdk-java/blob/main/example-for-spring/src/test/java/io/github/engagelab/api/ImageApiTest.java)
+
+## Native representative tests
+
+See [java native test instructions](engagelab-sdk/src/test/NATIVE_TESTS.md) for standalone contract tests and parameterized QA/production integration tests.
