@@ -17,6 +17,7 @@
         <feign-core.version>13.5</feign-core.version>
         <jackson.version>2.18.0</jackson.version>
         <junit.version>5.11.3</junit.version>
+        <native.excluded.groups>integration</native.excluded.groups>
     </properties>
 
     <dependencies>
@@ -106,6 +107,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.2</version>
+                <configuration><excludedGroups>${native.excluded.groups}</excludedGroups></configuration>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.central</groupId>
@@ -169,4 +171,14 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>integration</id>
+            <properties><native.excluded.groups>none</native.excluded.groups></properties>
+            <build><plugins><plugin>
+                <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId>
+                <configuration><groups>integration</groups></configuration>
+            </plugin></plugins></build>
+        </profile>
+    </profiles>
 </project>
