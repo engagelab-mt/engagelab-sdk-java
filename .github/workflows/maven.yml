@@ -25,4 +25,4 @@ jobs:
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
-        run: mvn --batch-mode -Dgpg.passphrase=${{ secrets.GPG_SECRET_PASSWORD }} clean deploy -am -pl engagelab-sdk -X
+        run: mvn --batch-mode -Dgpg.passphrase=${{ secrets.GPG_SECRET_PASSWORD }} clean deploy -am -pl engagelab-sdk
